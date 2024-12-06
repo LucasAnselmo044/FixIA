@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixIA - Meus Estudos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #121212;
+      color: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #6d28d9, #4c1d95);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .header nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .header nav a:hover {
+      color: #d8b4fe;
+      transform: scale(1.1);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1e1e2f;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      color: #d4d4d8;
+      transition: transform 0.3s;
+    }
+
+    .sidebar:hover {
+      transform: translateX(-5px);
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      color: #a78bfa;
+      border-bottom: 2px solid #6d28d9;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul li a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      padding: 12px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #312e81, #4f46e5);
+      text-align: center;
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background: linear-gradient(90deg, #4f46e5, #312e81);
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+      flex: 1;
+      background-color: #1e1e2f;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      font-size: 26px;
+      font-weight: 600;
+      color: #a78bfa;
+    }
+
+    .content p {
+      color: #e4e4e7;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .progress-list {
+      background: #2d2d3a;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .progress-list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .progress-list li:hover {
+      background: #3b3b50;
+    }
+
+    .status {
+      font-weight: bold;
+      border-radius: 5px;
+      padding: 2px 6px;
+    }
+
+    .status.completed {
+      color: #2ecc71;
+      background: rgba(46, 204, 113, 0.1);
+    }
+
+    .status.in-progress {
+      color: #f39c12;
+      background: rgba(243, 156, 18, 0.1);
+    }
+
+    .status.not-started {
+      color: #e74c3c;
+      background: rgba(231, 76, 60, 0.1);
+    }
+
+    footer {
+      background-color: #18181b;
+      color: #a1a1aa;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    footer a {
+      color: #7c3aed;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease-in-out;
+    }
+
+    footer a:hover {
+      color: #c084fc;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>FixIA</h1>
+      <nav>
+        <a href="dashboard.html">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+      </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="main">
+      <!-- Barra lateral -->
+      <aside class="sidebar">
+        <h3>Menu</h3>
+        <ul>
+          <li><a href="estudos.html">Meus Estudos</a></li>
+          <li><a href="estatisticas.html">Estatísticas</a></li>
+          <li><a href="configuracoes.html">Configurações</a></li>
+        </ul>
+      </aside>
+
+      <!-- Área de conteúdo -->
+      <section class="content">
+        <h2>Meus Estudos</h2>
+        <p>Confira o progresso dos seus estudos:</p>
+        <ul class="progress-list">
+          <li>
+            <span>Módulo 1: Introdução à IA</span>
+            <span class="status completed">Concluído</span>
+          </li>
+          <li>
+            <span>Módulo 2: Machine Learning Básico</span>
+            <span class="status in-progress">Em progresso</span>
+          </li>
+          <li>
+            <span>Módulo 3: Redes Neurais</span>
+            <span class="status not-started">Não iniciado</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>Desenvolvido por <a href="mailto:lucasanselmodev@gmail.com">lucasanselmodev@gmail.com</a>. Todos os direitos reservados &copy; 2024.</p>
+    </footer>
+  </div>
+</body>
+
+</html>

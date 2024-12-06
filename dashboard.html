@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixIA - Estatísticas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #121212;
+      color: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #6d28d9, #4c1d95);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .header nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .header nav a:hover {
+      color: #d8b4fe;
+      transform: scale(1.1);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1e1e2f;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      color: #d4d4d8;
+      transition: transform 0.3s;
+    }
+
+    .sidebar:hover {
+      transform: translateX(-5px);
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      color: #a78bfa;
+      border-bottom: 2px solid #6d28d9;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul li a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      padding: 12px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #312e81, #4f46e5);
+      text-align: center;
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background: linear-gradient(90deg, #4f46e5, #312e81);
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .content {
+      flex: 1;
+      background-color: #1e1e2f;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      font-size: 26px;
+      font-weight: 600;
+      color: #a78bfa;
+    }
+
+    .content p {
+      color: #e4e4e7;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .stats-card {
+      background: #2d2d3a;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .stats-card h3 {
+      margin: 0 0 10px 0;
+      color: #a78bfa;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .stats-card p {
+      margin: 0;
+      font-size: 16px;
+      color: #e4e4e7;
+    }
+
+    footer {
+      background-color: #18181b;
+      color: #a1a1aa;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    footer a {
+      color: #7c3aed;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease-in-out;
+    }
+
+    footer a:hover {
+      color: #c084fc;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>FixIA</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+      </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="main">
+      <!-- Barra lateral -->
+      <aside class="sidebar">
+        <h3>Menu</h3>
+        <ul>
+          <li><a href="estudos.html">Meus Estudos</a></li>
+          <li><a href="estatisticas.html">Estatísticas</a></li>
+          <li><a href="configuracoes.html">Configurações</a></li>
+        </ul>
+      </aside>
+
+      <!-- Área de conteúdo -->
+      <section class="content">
+        <h2>Bem-vindo(a) ao FixIA</h2>
+        <div class="welcome">
+          <h3>Explore seu progresso e conquiste mais!</h3>
+          <button>Iniciar</button>
+        </div>
+        <p>Aqui você pode acessar conteúdos personalizados e acompanhar seu progresso nos estudos.</p>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>

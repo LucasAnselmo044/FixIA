@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+@media screen and (max-width: 1040px){
+    section {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 830px){
+    .txt h1 {
+        font-size: 2rem;
+    }
+    
+    .txt p {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 715px){
+    #img {
+        display: none;
+    }
+
+    section {
+        max-width: 80%;
+        min-width: 370px;
+    }
+
+    div {
+        width: 100%;
+    }
+
+    .box-input {
+        width: 80%;
+    }
+
+    .botao {
+        width: 65%;
+    }
+}

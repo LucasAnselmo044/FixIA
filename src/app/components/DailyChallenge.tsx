@@ -11,7 +11,7 @@ type Option = {
 
 export default function DailyChallenge() {
   const [question, setQuestion] = useState<string>(
-    "Qual é a porcentagem atual de mulheres que ocupam cargos de liderança em grandes empresas no Brasil, e como essa estatística reflete a questão da igualdade de gênero no mercado de trabalho?"
+    "Teste"
   );
   const [options, setOptions] = useState<Option[]>([
     { id: 1, text: "20%", isCorrect: false },

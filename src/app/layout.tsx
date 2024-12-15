@@ -9,8 +9,8 @@ const roboto = Roboto({
 }) 
 
 export const metadata: Metadata = {
-  title: "Quizzma",
-  description: "Página Principal do Quizzma",
+  title: "FixIA",
+  description: "FixIA - Onde seu conhecimento em programação cresce.",
 };
 
 export default function RootLayout({

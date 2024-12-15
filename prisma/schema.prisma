@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String    @id @default(cuid())
+  name             String?
+  email            String    @unique
+  username         String?   @unique
+  password         String?
+  image            String?
+  role             String    @default("user")
+  createdAt        DateTime  @default(now())
+  emailVerified    DateTime?
+  updatedAt        DateTime  @updatedAt
+  level            Int?      @default(1)
+  points           Int?      @default(0)
+  quizzesCompleted Int?      @default(0)
+  accounts         Account[]
+  quizzes          Quiz[]    @relation("UserQuizzes")
+  results          Result[]
+  sessions         Session[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@unique([provider, providerAccountId], map: "unique_provider_account")
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Quiz {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  userId      String?
+  categoryId  Int
+  questions   Question[]
+  category    Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  creator     User?      @relation("UserQuizzes", fields: [userId], references: [id])
+  results     Result[]
+}
+
+model Question {
+  id              Int      @id @default(autoincrement())
+  text            String
+  quizId          Int
+  correctOptionId Int?
+  options         Option[]
+  quiz            Quiz     @relation(fields: [quizId], references: [id])
+}
+
+model Option {
+  id         Int      @id @default(autoincrement())
+  text       String
+  isCorrect  Boolean
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+model Result {
+  id          Int       @id @default(autoincrement())
+  score       Int
+  userId      String
+  quizId      Int
+  completedAt DateTime? @default(now()) @db.Timestamptz(6)
+  quiz        Quiz      @relation(fields: [quizId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  quizzes Quiz[]
+}

@@ -1,53 +1,55 @@
 "use client";
 
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function WelcomePage() {
   const router = useRouter();
 
   const handleStartClick = () => {
-    router.push('/signin');
+    router.push("/signin");
   };
 
   return (
-    <div className="h-screen w-full bg-gradient-to-r from-purple-900 via-indigo-950 to-black flex justify-center items-center relative">
-      {/* Fundo com tema de programação */}
+    <div className="h-screen w-full bg-gradient-to-r from-purple-900 via-indigo-950 to-black flex justify-center items-center relative overflow-hidden">
+      {/* Fundo com código e opacidade aprimorada */}
       <div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-40"
+        className="absolute inset-0 bg-cover bg-center opacity-50"
         style={{ backgroundImage: "url('/images/blackboard-code-bg.jpg')" }}
       ></div>
 
-      <div className="text-center p-10 bg-opacity-80 bg-black rounded-xl shadow-2xl max-w-4xl mx-auto animate-fadeIn z-20">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 animate-slideInUp">
-          Bem-vindo ao FixIA!
-        </h1>
+      {/* Camada de gradiente para efeito de profundidade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black"></div>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-6 animate-slideInUp delay-200">
-          FixIA é um site de perguntas rápidas sobre programação, projetado para desafiar suas habilidades e expandir seus conhecimentos. E não paramos por aqui: grandes novidades estão por vir!
-        </p>
-
-        <div className="relative mx-auto my-8">
-          <div className="w-56 h-56 mx-auto flex justify-center items-center">
-            <Image
-              src="/images/logo.png"
-              alt="Logo do FixIA"
-              width={224} // 56 * 4 (Tailwind rem scale)
-              height={224}
-              className="rounded-full"
-            />
-          </div>
+      {/* Conteúdo principal */}
+      <div className="relative z-20 text-center p-8 max-w-4xl mx-auto">
+        {/* Logo destacada */}
+        <div className="flex justify-center mb-12">
+          <Image
+            src="/images/logo.png"
+            alt="Logo do FixIA"
+            width={320} // Aumentei a largura para maior impacto visual
+            height={160}
+            className="object-contain"
+          />
         </div>
 
-        <p className="mt-4 text-lg md:text-xl text-gray-300 mb-6">
-          Prepare-se para embarcar em uma jornada de aprendizado e desafios emocionantes. Queremos que você atinja o próximo nível na sua carreira de programação!
+        {/* Título e descrição */}
+        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
+          Bem-vindo ao <span className="text-purple-500">FixIA</span>!
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-8">
+          FixIA é um site interativo de quizzes sobre programação, projetado
+          para desafiar suas habilidades e impulsionar sua carreira no mundo da
+          tecnologia. Prepare-se para uma experiência inovadora!
         </p>
 
+        {/* Botão de ação */}
         <button
           onClick={handleStartClick}
-          className="px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-lg rounded-md shadow-md transform hover:scale-105 transition-transform"
+          className="px-10 py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold text-lg rounded-lg shadow-lg transform hover:scale-105 transition-all ease-in-out duration-200"
         >
-          Começar
+          Começar Agora
         </button>
       </div>
     </div>

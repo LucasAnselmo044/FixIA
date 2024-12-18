@@ -12,7 +12,6 @@ import { motion } from 'framer-motion';
 export default function DashBoard() {
   const { data: session, status } = useSession();
   const router = useRouter();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,22 +28,31 @@ export default function DashBoard() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-900 via-indigo-950 to-black">
-        <div className="absolute top-0 left-0 w-full h-full bg-opacity-80" />
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
-          className="flex flex-col items-center z-10"
-        >
-          <Image
-            src="/images/logo.png"
-            alt="FixIA Logo"
-            width={250}
-            height={250}
-          />
-        </motion.div>
-      </div>
+    <div className="flex items-center justify-center min-h-screen bg-black relative">
+           <Image
+             src="/images/fundo.jpg"
+             alt="Fundo FixIA"
+             layout="fill"
+             className="absolute object-cover opacity-20 blur-lg"
+           />
+           <motion.div
+             className="z-10 text-center flex flex-col items-center"
+             initial={{ scale: 0.8, opacity: 0 }}
+             animate={{ scale: 1, opacity: 1 }}
+             transition={{ duration: 1, ease: 'easeInOut', repeat: Infinity }}
+           >
+             <img
+               src="/images/logo.png"
+               alt="Logo Quizzma"
+               width={200}
+               height={200}
+               className="animate-pulse"
+             />
+             <p className="text-white mt-4 text-xl font-semibold">
+               Carregando... Por favor, aguarde.
+             </p>
+           </motion.div>
+         </div>
     );
   }
 
@@ -64,55 +72,64 @@ export default function DashBoard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-900 via-indigo-950 to-black"
+      className="relative min-h-screen flex flex-col bg-gradient-to-br from-purple-900 via-black to-gray-900"
     >
-      <div className="absolute top-0 left-0 w-full h-full bg-opacity-90" />
+      {/* Navigation */}
+      <header className="w-full px-6 py-4 flex justify-between items-center z-20">
+        <div className="hidden xl:block">
+          <NavBar />
+        </div>
+        <div className="xl:hidden text-white text-3xl p-4">
+          <MobileNav />
+        </div>
+      </header>
 
-      <div className="xl:block hidden z-20">
-        <NavBar />
-      </div>
-
-      <div className="xl:hidden text-white text-3xl p-4 absolute top-4 left-4 z-30">
-        <MobileNav />
-      </div>
-
-      <main className="text-center p-6 sm:p-10 relative z-10">
+      {/* Main Content */}
+      <main className="flex-grow flex flex-col items-center justify-center text-center p-6 sm:p-10 relative z-10">
+        {/* Greeting */}
         {session?.user?.name && (
           <motion.h1
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
-            className="text-white text-4xl font-extrabold mb-4"
+            className="text-white text-5xl sm:text-6xl font-extrabold mb-6 tracking-tight"
           >
             {`${getGreeting()}, ${session.user.name}!`}
           </motion.h1>
         )}
 
+        {/* Subtitle */}
         <motion.p
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
-          className="text-gray-300 text-lg font-light max-w-lg mx-auto mb-8"
+          className="text-gray-300 text-lg sm:text-xl font-light max-w-2xl mx-auto mb-12"
         >
-          Teste seus conhecimentos de programação com questões desafiadoras sobre tecnologia e programação!
+          Teste seus conhecimentos com questões incríveis e desafie-se com tópicos de tecnologia e programação!
         </motion.p>
 
+        {/* Action Button */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: 'easeInOut', delay: 0.6 }}
-          className="flex flex-col justify-center items-center"
+          className="flex justify-center"
         >
-          <div className="space-y-4">
-            <Button
-              className="w-64 bg-purple-500 hover:bg-purple-600 text-white py-3 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => router.push('/categories')}
-            >
-              Escolher Categoria
-            </Button>
-          </div>
+          <Button
+            className="w-64 sm:w-48 bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            onClick={() => router.push('/categories')}
+          >
+            Escolher Categoria
+          </Button>
         </motion.div>
       </main>
+
+      {/* Footer */}
+      <footer className="w-full py-4 text-center text-sm text-gray-400 bg-gray-900 bg-opacity-30">
+        <p>
+          © {new Date().getFullYear()} FixIA. Todos os direitos reservados.
+        </p>
+      </footer>
     </motion.div>
   );
 }

@@ -36,7 +36,7 @@ export default function WelcomePage() {
       >
         {/* Logo destacada */}
         <div className="flex justify-center mb-12">
-          <Image
+          <img
             src="/images/logo.png"
             alt="Logo do FixIA"
             width={320} // Aumentei a largura para maior impacto visual
